@@ -7,7 +7,6 @@ use Weeek\Endpoints\Endpoint;
 use Weeek\Exceptions\ApiErrorException;
 use Weeek\Exceptions\TransportException;
 use Weeek\Exceptions\UnexpectedResponseException;
-use Weeek\Models\TaskManager\Board;
 use Weeek\Responses\Response;
 use Weeek\Responses\TaskManager\Board\BoardListResponse;
 use Weeek\Responses\TaskManager\Board\BoardResponse;
@@ -17,13 +16,13 @@ class Boards extends Endpoint
     protected $prefix = '/tm/boards';
 
     /**
-     * @return array<Board>
+     * @return BoardListResponse
      * @throws ApiErrorException
      * @throws ClientExceptionInterface
      * @throws TransportException
      * @throws UnexpectedResponseException
      */
-    public function getAll(int $projectId): array
+    public function getAll(int $projectId): BoardListResponse
     {
         return $this->get('/', \compact('projectId'), BoardListResponse::class);
     }
